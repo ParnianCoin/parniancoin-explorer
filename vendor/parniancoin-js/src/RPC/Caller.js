@@ -1,0 +1,102 @@
+/**
+ * Copyright (c) Benjamin Ansbach - all rights reserved.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+const jaysonBrowserClient = require('jayson/lib/client/browser');
+const fetch = require('node-fetch');
+
+const P_CLIENT = Symbol('client');
+
+/**
+ * A caller object that can call JSON-RPC methods.
+ */
+class Caller {
+  /**
+     * Creates a new caller instance.
+     *
+     * @param {String} host
+     */
+  constructor(host) {
+    this[P_CLIENT] = jaysonBrowserClient((request, callback) => {
+      const options = {
+        method: 'POST',
+        body: request,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+
+      return fetch(host, options)
+        .then(res => res.text())
+        .then((text) => {
+          callback(null, text);
+        })
+        .catch((err) => {
+          callback(err);
+        });
+    });
+  }
+
+  /**
+     * Calls the given method with the given params and returns a promise.
+     *
+     * @param {String}method
+     * @param {Object} params
+     * @returns {Promise<any>}
+     */
+  call(method, params) {
+    return new Promise((resolve, reject) => {
+      this[P_CLIENT].request(method, Caller.withoutEmptyParams(params),
+        (err, error, result) => {
+          // jayson hands back three values: a transport error, the JSON-RPC
+          // error object the node replied with, and the result. Ignoring the
+          // second one made a node that answered "invalid params" look exactly
+          // like a node that answered with an empty list, which is impossible
+          // to debug from the UI.
+          if (err) {
+            reject(err);
+            return;
+          }
+
+          if (error) {
+            const rpcError = new Error(
+              `RPC ${method} failed: ${error.message || 'unknown error'}`
+            );
+            rpcError.code = error.code;
+            reject(rpcError);
+            return;
+          }
+
+          resolve(result);
+        });
+    });
+  }
+
+  /**
+     * Drops parameters that carry no value. Some nodes treat a key that is
+     * present but null as a filter set to null rather than as "not given", and
+     * then answer with nothing at all.
+     *
+     * @param {Object} params
+     * @returns {Object}
+     */
+  static withoutEmptyParams(params) {
+    if (params === null || typeof params !== 'object' || Array.isArray(params)) {
+      return params;
+    }
+
+    const cleaned = {};
+    Object.keys(params).forEach((key) => {
+      if (params[key] !== null && params[key] !== undefined) {
+        cleaned[key] = params[key];
+      }
+    });
+
+    return cleaned;
+  }
+}
+
+module.exports = Caller;

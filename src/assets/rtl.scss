@@ -1,0 +1,111 @@
+/*
+ * Copyright (c) 2026 by Amir Reza Zamani
+ * This file is a part of the ParnianCoin Project, an infinitely scalable
+ * cryptocurrency. Find us here:
+ * Web: https://parniancoin.com
+ * THIS LICENSE HEADER MUST NOT BE REMOVED.
+ */
+
+/*
+ * Right-to-left overrides for Persian and Arabic.
+ *
+ * Only the rules that Bootstrap's direction-agnostic utilities cannot handle
+ * are mirrored here. Everything that carries data — hashes, public keys, block
+ * numbers, amounts — stays left to right on purpose: a hex string reads wrong
+ * when the browser reorders it bidirectionally.
+ */
+
+html[dir='rtl'] {
+  direction: rtl;
+  text-align: right;
+
+  body {
+    text-align: right;
+  }
+
+  /* --- navigation ------------------------------------------------------- */
+
+  .navbar .navbar-nav {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+    padding-right: 0;
+  }
+
+  .navbar-translate .search-toggler {
+    right: auto !important;
+    left: 55px;
+  }
+
+  .dropdown-menu {
+    right: 0;
+    left: auto;
+    text-align: right;
+  }
+
+  /* --- spacing utilities that carry a direction ------------------------- */
+
+  .ml-auto { margin-left: 0 !important; margin-right: auto !important; }
+  .mr-auto { margin-right: 0 !important; margin-left: auto !important; }
+
+  .pull-right { float: left !important; }
+  .pull-left { float: right !important; }
+
+  .text-left { text-align: right !important; }
+  .text-right { text-align: left !important; }
+
+  /* --- tables and lists ------------------------------------------------- */
+
+  .table th,
+  .table td {
+    text-align: right;
+  }
+
+  .links-vertical,
+  .social-buttons {
+    padding-right: 0;
+  }
+
+  /* --- forms ------------------------------------------------------------ */
+
+  .form-control,
+  input.search {
+    text-align: right;
+  }
+
+  /* --- icon spacing ----------------------------------------------------- */
+
+  .nav-link i,
+  .card-title i {
+    margin-left: 6px;
+    margin-right: 0;
+  }
+
+  /* --- keep technical values readable ----------------------------------- */
+
+  /*
+   * Hashes, keys, account numbers and amounts must not be reordered by the
+   * bidirectional algorithm, so they are pinned to left-to-right and aligned
+   * with the surrounding right-to-left text by hand.
+   */
+  .ltr,
+  code,
+  pre,
+  .hash,
+  .publickey,
+  .payload-hex {
+    direction: ltr;
+    unicode-bidi: embed;
+    text-align: left;
+    display: inline-block;
+  }
+
+  /* Charts render their own layout; leave them alone. */
+  .apexcharts-canvas {
+    direction: ltr;
+  }
+}
+
+/*
+ * The font stack itself lives in fonts.scss, where Vazirmatn is bundled with
+ * the project. Nothing here needs to guess at what the visitor has installed.
+ */

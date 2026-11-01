@@ -1,0 +1,78 @@
+{
+  "name": "parniancoin-explorer",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve --port 38100",
+    "rpc": "node server/index.js",
+    "build": "vue-cli-service build",
+    "start": "concurrently \"npm run rpc\" \"npm run serve\"",
+    "index": "node server/indexer.js",
+    "index:watch": "node server/indexer.js --watch",
+    "lint": "vue-cli-service lint",
+    "test:unit": "vue-cli-service test:unit"
+  },
+  "dependencies": {
+    "@fontsource/roboto": "^5.3.0",
+    "@fontsource/roboto-mono": "^5.3.0",
+    "@fontsource/roboto-slab": "^5.3.0",
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "apexcharts": "3.2.1",
+    "axios": "^0.18.0",
+    "bignumber.js": "^8.0.1",
+    "bootstrap": "4.2.1",
+    "bs58": "^4.0.1",
+    "elliptic": "^6.4.1",
+    "express": "^4.22.2",
+    "jayson": "^2.1.0",
+    "material-icons": "^1.13.14",
+    "node-fetch": "^2.3.0",
+    "node-forge": "^0.7.6",
+    "nprogress": "^0.2.0",
+    "p-queue": "^3.0.0",
+    "v-debounce": "^0.1.2",
+    "vue": "^2.5.21",
+    "vue-apexcharts": "1.2.9",
+    "vue-i18n": "^8.28.2",
+    "vue-moment": "^4.0.0",
+    "vue-router": "^3.0.1",
+    "vue-timeago": "^5.0.0",
+    "vue-top-progress": "^0.7.0",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.3.0",
+    "@vue/cli-plugin-eslint": "^3.3.0",
+    "@vue/cli-plugin-unit-mocha": "^3.3.0",
+    "@vue/cli-service": "^3.3.0",
+    "@vue/eslint-config-airbnb": "^4.0.0",
+    "@vue/test-utils": "^1.0.0-beta.20",
+    "babel-eslint": "^10.0.1",
+    "chai": "^4.1.2",
+    "concurrently": "^10.0.5",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "sass": "^1.32.13",
+    "sass-loader": "^7.3.1",
+    "vue-json-pretty": "^1.4.1",
+    "vue-template-compiler": "^2.5.21"
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "description": "ParnianCoin (PARC) block explorer",
+  "homepage": "https://parniancoin.com",
+  "license": "GPL-3.0",
+  "author": {
+    "name": "Amir Reza Zamani",
+    "email": "info@parniancoin.com",
+    "url": "https://parniancoin.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/parniancoin/parniancoin-explorer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/parniancoin/parniancoin-explorer/issues"
+  }
+}

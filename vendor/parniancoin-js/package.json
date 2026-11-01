@@ -1,0 +1,21 @@
+{
+  "name": "parniancoin",
+  "version": "0.0.2",
+  "description": "A library to work with ParnianCoin in nodejs and the browser.",
+  "main": "src/ParnianCoin.js",
+  "license": "MIT",
+  "author": "Benjamin Ansbach <benjaminansbach@gmail.com>",
+  "contributors": [
+    "Amir Reza Zamani"
+  ],
+  "_comment": "Forked from the MIT-licensed pascalcoin-js client library by Benjamin Ansbach and adapted for ParnianCoin. See LICENSE.",
+  "dependencies": {
+    "bignumber.js": "^8.0.1",
+    "bs58": "^4.0.1",
+    "elliptic": "^6.4.1",
+    "jayson": "^2.1.0",
+    "node-fetch": "^2.3.0",
+    "node-forge": "^0.7.6",
+    "p-queue": "^3.0.0"
+  }
+}

@@ -1,0 +1,80 @@
+/*
+ * Copyright (c) 2026 by Amir Reza Zamani
+ * This file is a part of the ParnianCoin Project, an infinitely scalable
+ * cryptocurrency. Find us here:
+ * Web: https://parniancoin.com
+ * THIS LICENSE HEADER MUST NOT BE REMOVED.
+ */
+
+/*
+ * Vazirmatn, shipped with the project so nothing is fetched from a CDN.
+ *
+ * The variable file covers every weight from 100 to 900 in 109 KB, which is
+ * less than three static weights would cost. Browsers without variable font
+ * support fall back to the two static files below.
+ */
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('~@/assets/fonts/vazirmatn/Vazirmatn-Variable.woff2') format('woff2-variations'),
+       url('~@/assets/fonts/vazirmatn/Vazirmatn-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@supports not (font-variation-settings: normal) {
+  @font-face {
+    font-family: 'Vazirmatn';
+    src: url('~@/assets/fonts/vazirmatn/Vazirmatn-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Vazirmatn';
+    src: url('~@/assets/fonts/vazirmatn/Vazirmatn-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+}
+
+/*
+ * Vazirmatn carries both Arabic-script and Latin glyphs, so one family serves
+ * all three languages and the interface keeps the same shape when the reader
+ * switches. Roboto stays behind it as a fallback.
+ *
+ * To keep the Latin layout on Roboto and use Vazirmatn only for Persian and
+ * Arabic, remove the two blocks below and keep the html[lang] rules in
+ * rtl.scss instead.
+ */
+$parnian-font-stack: 'Vazirmatn', 'Roboto', 'Segoe UI', Tahoma, sans-serif;
+
+body,
+.navbar,
+.btn,
+.form-control,
+input,
+select,
+textarea {
+  font-family: $parnian-font-stack;
+}
+
+h1, h2, h3, h4, h5, h6,
+.title,
+.card-title {
+  font-family: $parnian-font-stack;
+}
+
+/*
+ * Numbers, hashes and account identifiers keep a monospaced face: a hex string
+ * is read character by character, and proportional digits make that harder.
+ */
+code,
+pre,
+.hash,
+.ltr {
+  font-family: 'Roboto Mono', 'Consolas', monospace;
+}
