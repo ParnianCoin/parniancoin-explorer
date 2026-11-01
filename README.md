@@ -4,7 +4,6 @@ Block explorer for **ParnianCoin (PARC)** — Vue 2 frontend plus a small Node
 backend with a built-in SQLite index.
 Live instance: https://explorer.parniancoin.com — Website: https://parniancoin.com
 
-[فارسی](README.fa.md)
 
 ## Requirements
 
